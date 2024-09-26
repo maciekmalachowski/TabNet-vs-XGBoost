@@ -126,29 +126,29 @@ Interestingly, while testing different parameter values for both algorithms, the
 
 **1. Binary Classification (Tuned)**
 ```python
-TabNet Accuracy: 0.9127
-XGBoost Accuracy: 0.9107
+TabNet Accuracy: 0.9593
+XGBoost Accuracy: 0.9220
 ```
 
 **2. Multiclass Classification (Tuned)**
 ```python
-TabNet Accuracy: 0.9407
-XGBoost Accuracy: 0.9400
+TabNet Accuracy: 0.9647
+XGBoost Accuracy: 0.9373
 ```
 
 **3. Regression (Tuned)**
 ```python
-TabNet RMSE: 6.7788
-XGBoost RMSE: 43.0543
+TabNet RMSE: 8.4831
+XGBoost RMSE: 38.6514
 ```
 
 ### Key Insights from Fine-Tuning
 
-**Binary Classification**: After fine-tuning, TabNet slightly outperformed XGBoost, showing an accuracy of **0.9127** versus XGBoost's **0.9107**. While the difference is marginal, this indicates that TabNet can be competitive with XGBoost even in its area of strength.
+**Binary Classification**: After fine-tuning, TabNet slightly outperformed XGBoost, showing an accuracy of **0.9593** versus XGBoost's **0.9220**. While the difference is marginal, this indicates that TabNet can be competitive with XGBoost even in its area of strength.
 
-**Multiclass Classification**: Both models converged to a similar accuracy, with TabNet achieving **0.9407** and XGBoost **0.9400**. This near-parity demonstrates that both models are highly effective when properly tuned for classification tasks.
+**Multiclass Classification**: Both models converged to a similar accuracy, with TabNet achieving **0.9647** and XGBoost **0.9373**. This near-parity demonstrates that both models are highly effective when properly tuned for classification tasks.
 
-**Regression**: TabNet continued to dominate in the regression task. After fine-tuning, its RMSE dropped significantly to **6.7788**, compared to XGBoost's RMSE of **43.0543**. This stark contrast further underscores TabNet's ability to capture complex patterns in continuous data, especially in regression tasks where feature importance and attention mechanisms might play a larger role.
+**Regression**: TabNet continued to dominate in the regression task. After fine-tuning, its RMSE dropped significantly to **8.4831**, compared to XGBoost's RMSE of **38.6514**. This stark contrast further underscores TabNet's ability to capture complex patterns in continuous data, especially in regression tasks where feature importance and attention mechanisms might play a larger role.
 
 <br>
 
