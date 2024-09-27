@@ -96,7 +96,7 @@ Next, I adjusted the algorithms with custom parameters to see how much improveme
 
 For **TabNet**, I used custom parameters such as:
 - `eval_metric` = Accuracy (Classification) / RMSE (Regression)
-- `max_epochs` = 150
+- `max_epochs` = 100
 - `patience` = 30
 - `optimizer_params` = 0.09
 
