@@ -99,12 +99,54 @@ For **TabNet**, I used custom parameters such as:
 - `max_epochs` = 100
 - `patience` = 30
 - `optimizer_params` = 0.09
+```python
+# Classification
+    clf_tabnet = TabNetClassifier(optimizer_params=dict(lr=0.09), verbose=0)
+
+    clf_tabnet.fit(
+        X_train, y_train,
+        eval_set=[(X_valid, y_valid)],
+        eval_metric=["accuracy"],
+        max_epochs=100,
+        patience=30
+    )
+
+# Regression
+    reg_tabnet = TabNetRegressor(optimizer_params=dict(lr=0.09), verbose=0)
+
+    reg_tabnet.fit(
+        X_train, y_train,
+        eval_set=[(X_valid, y_valid)],
+        eval_metric=["rmse"],
+        max_epochs=100,
+        patience=30
+    )
+```
 
 For **XGBoost**, the following parameters were adjusted:
 - `eval_metric` = Logloss (Classification) / RMSE (Regression)
 - `n_estimators` = 1000
 - `early_stopping_rounds` = 30
 - `learning_rate` = 0.05
+```python
+# Classification
+    clf_xgboost = xgb.XGBClassifier(n_estimators=1000, eval_metric="logloss", early_stopping_rounds=30, learning_rate=0.05)
+
+    clf_xgboost.fit(
+        X_train, y_train,
+        eval_set=[(X_valid, y_valid)],
+        verbose=False
+    )
+
+# Regression
+    reg_xgboost = xgb.XGBRegressor(n_estimators=1000, eval_metric="rmse", early_stopping_rounds=30, learning_rate=0.05)
+    
+    reg_xgboost.fit(
+        X_train, y_train,
+        eval_set=[(X_valid, y_valid)],
+        verbose=False
+    )
+```
 
 Interestingly, while testing different parameter values for both algorithms, the **default versions of some parameters of XGBoost and TabNet performed best** in most cases. Fine-tuning provided marginal improvements in accuracy and RMSE, but the default configurations already showcased solid performance.
 
