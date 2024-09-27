@@ -2,9 +2,9 @@
 
 <img src="banner.png" alt="TabNet vs XGBoost">
 
-When it comes to tabular data, `XGBoost` has long been a dominant machine learning algorithm. However, in recent years, `TabNet`, a deep learning architecture specifically designed for tabular data, has emerged as a strong contender. In this blog post, we'll explore both algorithms by comparing their performance on various tasks and examine the surprising strengths of TabNet.
+When it comes to tabular data, **XGBoost** has long been a dominant machine learning algorithm. However, in recent years, **TabNet**, a deep learning architecture specifically designed for tabular data, has emerged as a strong contender. In this blog post, we'll explore both algorithms by comparing their performance on various tasks and examine the surprising strengths of TabNet.
 
-<h2>What is <a href="https://github.com/dreamquark-ai/tabnet" target="_blank" style="text-decoration:none;">TabNet</a>?</h2>
+<h2>What is <a href="https://github.com/dreamquark-ai/tabnet" target="_blank" style="text-decoration:none;">TabNet</a> ?</h2>
 
 **TabNet** was proposed by researchers at **Google Cloud** in 2019 to bring the power of deep learning to tabular data. Despite the rise of neural networks in fields like image processing, natural language understanding, and speech recognition, tabular data—which is still the foundation of many industries like healthcare, finance, retail, and marketing—has traditionally been dominated by tree-based models like **XGBoost**.
 
@@ -16,9 +16,7 @@ By combining these principles, **TabNet** delivers a high-performance deep learn
 
 ## Installing TabNet
 
-Before diving into the comparison, let’s start by installing the necessary libraries.
-
-You can install **TabNet** using pip or conda as follows.
+You can install **TabNet** simply using pip or conda as follows.
 
 - with **pip**  
 ```python
@@ -29,20 +27,6 @@ pip install pytorch-tabnet
 ```python
 conda install -c conda-forge pytorch-tabnet
 ```
-
-Also you can install **XGBoost** the same ways.
-
-- with **pip**
-```python
-pip install xgboost
-```
-
-- with **conda**
-```python
-conda install -c conda-forge py-xgboost
-```
-
-Now that we have both algorithms ready, let’s explore how they perform on different types of synthetic datasets.
 
 <br>
 
@@ -117,45 +101,45 @@ For **TabNet**, I used custom parameters such as:
 - `optimizer_params` = 0.09
 
 For **XGBoost**, the following parameters were adjusted:
-- `eval_metric` = Accuracy (Classification) / RMSE (Regression)
-- `n_estimators` = 150
+- `eval_metric` = Logloss (Classification) / RMSE (Regression)
+- `n_estimators` = 1000
 - `early_stopping_rounds` = 30
-- `learning_rate` = 0.2
+- `learning_rate` = 0.05
 
-Interestingly, while testing different parameter values for both algorithms, the **default versions of XGBoost and TabNet performed best** in most cases. Fine-tuning provided marginal improvements in accuracy and RMSE, but the default configurations already showcased solid performance.
+Interestingly, while testing different parameter values for both algorithms, the **default versions of some parameters of XGBoost and TabNet performed best** in most cases. Fine-tuning provided marginal improvements in accuracy and RMSE, but the default configurations already showcased solid performance.
 
 **1. Binary Classification (Tuned)**
 ```python
 TabNet Accuracy: 0.9593
-XGBoost Accuracy: 0.9220
+XGBoost Accuracy: 0.92
 ```
 
 **2. Multiclass Classification (Tuned)**
 ```python
 TabNet Accuracy: 0.9647
-XGBoost Accuracy: 0.9373
+XGBoost Accuracy: 0.9387
 ```
 
 **3. Regression (Tuned)**
 ```python
 TabNet RMSE: 8.4831
-XGBoost RMSE: 38.6514
+XGBoost RMSE: 31.1758
 ```
 
 ### Key Insights from Fine-Tuning
 
-**Binary Classification**: After fine-tuning, TabNet slightly outperformed XGBoost, showing an accuracy of **0.9593** versus XGBoost's **0.9220**. While the difference is marginal, this indicates that TabNet can be competitive with XGBoost even in its area of strength.
+**Binary Classification**: After fine-tuning, **TabNet significantly outperformed XGBoost**, achieving an accuracy of **0.9593** compared to XGBoost's **0.92**. This shows that with the right tuning, TabNet can deliver much stronger results even in traditionally tree-dominated areas like classification.
 
-**Multiclass Classification**: Both models converged to a similar accuracy, with TabNet achieving **0.9647** and XGBoost **0.9373**. This near-parity demonstrates that both models are highly effective when properly tuned for classification tasks.
+**Multiclass Classification**: Here, **TabNet outperformed XGBoost**, reaching an accuracy of **0.9647**, while XGBoost achieved **0.9387**. TabNet's ability to handle multiple classes effectively makes it a powerful tool for multiclass tasks, especially with proper parameter adjustment.
 
-**Regression**: TabNet continued to dominate in the regression task. After fine-tuning, its RMSE dropped significantly to **8.4831**, compared to XGBoost's RMSE of **38.6514**. This stark contrast further underscores TabNet's ability to capture complex patterns in continuous data, especially in regression tasks where feature importance and attention mechanisms might play a larger role.
+**Regression**: **TabNet continued to dominate** in the regression task. After fine-tuning, its RMSE dropped to **8.4831**, compared to XGBoost's RMSE of **31.1758**. This stark contrast highlights TabNet’s ability to capture complex relationships in continuous data, making it especially useful for regression tasks where interpretability and attention to important features matter.
 
 <br>
 
 ## Conclusion: TabNet’s Surprising Strengths
 
-In this comparison, both TabNet and XGBoost demonstrated excellent performance across tasks, especially after tuning. However, what stands out is **TabNet's superior performance in regression** tasks, where it dramatically outperformed XGBoost. This result challenges the common assumption that gradient-boosting algorithms like XGBoost are the best option for regression on tabular data.
+In this comparison, both **TabNet** and **XGBoost** demonstrated excellent performance across tasks, especially after tuning. However, what stands out is **TabNet's superior performance in both classification and regression** tasks. In particular, TabNet dramatically outperformed XGBoost in the regression task, challenging the common assumption that gradient-boosting algorithms like XGBoost are the best option for regression on tabular data.
 
-Moreover, the fact that TabNet can match or even surpass XGBoost in classification tasks, especially after fine-tuning, shows that it's a viable alternative for a wide range of tabular data problems.
+Moreover, the fact that **TabNet consistently surpassed XGBoost in both binary and multiclass classification tasks** after fine-tuning shows that it is not just competitive, but often better-suited for a wide range of tabular data problems.
 
-What’s particularly exciting about TabNet is that it integrates **deep learning principles like attention** with a focus on interpretability, making it a modern and powerful tool for handling tabular datasets. Its ability to deliver competitive results without extensive feature engineering, and its surprising performance in tasks like regression, makes it a model worth considering for many real-world applications.
+What’s particularly exciting about TabNet is its integration of **deep learning principles like attention mechanisms**, combined with a focus on interpretability. This makes it a modern and powerful tool for handling tabular datasets. Its ability to deliver strong results without extensive feature engineering, especially in regression, makes TabNet a model worth considering for many real-world applications.
